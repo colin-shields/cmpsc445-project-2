@@ -48,13 +48,17 @@ Start the API:
 
 ```powershell
 cd backend
-node server.js
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app
 ```
 
 Start the frontend:
 
 ```powershell
 cd frontend
+npm install
 npm run dev
 ```
 
