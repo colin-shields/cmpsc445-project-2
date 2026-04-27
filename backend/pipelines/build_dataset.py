@@ -13,7 +13,7 @@ def build_dataset():
     os.makedirs(r".\data\processed", exist_ok=True)
 
     # Load DataFrames.
-    fips_df = pd.read_csv(r".\data\processed\fips_lookup.csv")
+    fips_df = pd.read_csv(r".\data\raw\fips_lookup.csv")
     df = pd.read_excel(r".\data\raw\crv-us-climate-risk-proj-county-2040-2049-xlsx.xlsx", sheet_name='ClimateRisk')
 
     # Keep only PA counties.
