@@ -10,7 +10,7 @@ def preprocess():
     print("Performing preprocessing steps on dataset...")
 
     # Load processed county data.
-    df = pd.read_csv(r".\data\processed\county_features.csv")
+    df = pd.read_csv(r"data\processed\county_features.csv")
     df.columns = df.columns.str.lower().str.replace(' ', '_')
 
     # Drop unnecessary columns.
@@ -29,7 +29,7 @@ def preprocess():
     df['climate_stress_score'] = df[['tempchg', 'heatext', 'drychg']].mean(axis=1)
     
     # Save to file.
-    df.to_csv(r".\data\processed\preprocessed.csv", index=False)
+    df.to_csv(r"data\processed\preprocessed.csv", index=False)
     print("Saved preprocessed data.")
 
 if __name__ == "__main__":
