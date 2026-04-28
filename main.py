@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from pipeline import execute_pipeline
-from train import get_feature_columns, load_model
+from evaluate import evaluate
 
 DATA_PATH = r"data\processed\preprocessed.csv"
 MODEL_PATH = r"data\model\kmeans.joblib"
@@ -120,11 +120,7 @@ def create_stress_map(df):
 
 ensure_model_and_data()
 
-df = pd.read_csv(DATA_PATH)
-model = load_model(MODEL_PATH)
-
-feature_columns = get_feature_columns(df)
-df["cluster"] = model.predict(df[feature_columns])
+df, scores = evaluate()
 df["cluster_label"], cluster_name_map = assign_cluster_labels(df)
 
 
@@ -199,5 +195,21 @@ st.write("Looking at the cluster assignments alone, most Pennsylvania counties a
          # "Also of note, Allegheny county, home to the city of Pittsburg, seems to be ")
 
 # Cluster Evaluation.
-# st.write("## Cluster Evaluation")
+st.write("## Cluster Evaluation")
+sil = scores['silhouette']
+db = scores['davies_bouldin']
+
+st.table([['Metric', 'Score'],
+          ['Silhouette', sil],
+          ['Davies-Bouldin', db]])
+st.write("Clustering was evaluated on two metrics: the Silhouette score and the Davies-Bouldin (DB) score. "
+         "While improvements could be made, both scores fall within acceptable ranges for this task. "
+         "Silhouette scores range from -1 to 1, with -1 representing poor clustering and misclassified samples and 1 "
+         "representing excellent, well-separated clusters. "
+         f"A Silhouette score of {sil:.2f} signifies that, while there are some overlapping clusters or boundary "
+         "samples, clustering did perform adequately, and counties can be evaluated based on their cluster to some "
+         "degree. DB scores are greater than 0, with scores closer to 0 representing better clustering. "
+         f"A DB score of {db:.2f} means approximately the same as the Silhouette score of {sil:.2f}–although not "
+         "perfect, it is a generally acceptable result, especially in potentially noisy real-world datasets, such as "
+         "the one we are using.")
 

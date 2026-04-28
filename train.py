@@ -37,11 +37,5 @@ def train(n_clusters=5):
     print(f"Saved model to {MODEL_PATH}")
 
 
-def load_model(path=MODEL_PATH):
-    if not os.path.exists(path):
-        raise FileNotFoundError(f"Model file not found: {path}")
-    return joblib.load(path)
-
-
 if __name__ == "__main__":
     train()
