@@ -26,12 +26,14 @@ COLUMN_DISPLAY_NAMES = {
 # HELPER FUNCTIONS #####################################################################################################
 
 def ensure_model_and_data():
+    """Ensure that the model and data structures exist."""
     if not (os.path.exists(DATA_PATH) and os.path.exists(MODEL_PATH)):
         # Some data does not exist. Run pipeline to create them.
         execute_pipeline()
 
 
 def assign_cluster_labels(df):
+    """Given a clustered DataFrame, assign names to each cluster."""
     # Group by Cluster.
     cluster_means = df.groupby("cluster")["climate_stress_score"].mean().sort_values()
     ordered_clusters = cluster_means.index.tolist()
@@ -49,6 +51,7 @@ def assign_cluster_labels(df):
 
 
 def create_cluster_map(df):
+    """Create map of Pennsylvania colorized by the cluster of each county."""
     # Load US counties shapefile from public source.
     url = MAP_URL
     counties = gpd.read_file(url)
@@ -86,6 +89,7 @@ def create_cluster_map(df):
 
 
 def create_stress_map(df):
+    """Create map of Pennsylvania colorized by the climate stress of each county."""
     counties = gpd.read_file(MAP_URL)
     counties['id'] = counties['id'].astype(np.int64)
 
@@ -180,7 +184,7 @@ st.write("### Top 10 counties with the lowest climate stress:")
 st.dataframe(best_scores, hide_index=True)
 
 # Clustering.
-st.write("## Climate Stress: Clusters")
+st.write("## Climate Stress: Clustering")
 st.write("Now, we'll show the results of KMeans clustering (k = 5) to the dataset to label counties by their scores. "
          "The figure below visualizes each PA county by the cluster into which they were placed. The key in the "
          "upper-right corner of the figure which clusters are represented by each color.")
@@ -192,7 +196,6 @@ st.write("Looking at the cluster assignments alone, most Pennsylvania counties a
          "the state. "
          "Interestingly, while Philadelphia county and the counties doubly-adjacent to it are assigned to more "
          "stressed clusters, the three counties immediately adjacent are assigned to the Better cluster. ")
-         # "Also of note, Allegheny county, home to the city of Pittsburg, seems to be ")
 
 # Cluster Evaluation.
 st.write("## Cluster Evaluation")
@@ -209,7 +212,6 @@ st.write("Clustering was evaluated on two metrics: the Silhouette score and the 
          f"A Silhouette score of {sil:.2f} signifies that, while there are some overlapping clusters or boundary "
          "samples, clustering did perform adequately, and counties can be evaluated based on their cluster to some "
          "degree. DB scores are greater than 0, with scores closer to 0 representing better clustering. "
-         f"A DB score of {db:.2f} means approximately the same as the Silhouette score of {sil:.2f}–although not "
+         f"A DB score of {db:.2f} means approximately the same as the Silhouette score of {sil:.2f}—although not "
          "perfect, it is a generally acceptable result, especially in potentially noisy real-world datasets, such as "
          "the one we are using.")
-

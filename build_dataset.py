@@ -1,9 +1,11 @@
 """
-This scripts loads the dataset from the raw data files.
+Builds the training dataset from the raw data files.
+Handles directory initialization, filtering by PA county, and column name simplification.
 """
 
 import pandas as pd
 import os
+
 
 def build_dataset():
     print("Building county feature dataset...")
