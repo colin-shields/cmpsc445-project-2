@@ -11,11 +11,11 @@ def build_dataset():
     print("Building county feature dataset...")
 
     # Create processed data directory if it does not already exist.
-    os.makedirs(r"data\processed", exist_ok=True)
+    os.makedirs(r"data/processed", exist_ok=True)
 
     # Load DataFrames.
-    fips_df = pd.read_csv(r"data\raw\fips_lookup.csv")
-    df = pd.read_excel(r"data\raw\crv-us-climate-risk-proj-county-2040-2049-xlsx.xlsx", sheet_name='ClimateRisk')
+    fips_df = pd.read_csv(r"data/raw/fips_lookup.csv")
+    df = pd.read_excel(r"data/raw/crv-us-climate-risk-proj-county-2040-2049-xlsx.xlsx", sheet_name='ClimateRisk')
 
     # Keep only PA counties.
     df = pd.merge(fips_df, df, left_on='FIPS County Code', right_on='GEOID', how='left')

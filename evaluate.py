@@ -9,8 +9,8 @@ def evaluate():
     """Evaluates the pre-trained model (built in train.py) via silhouette and Davies-Bouldin scores. Returns the
     scores and the data with cluster information."""
     # Load model & data.
-    model: KMeans = joblib.load(r"data\model\kmeans.joblib")
-    df = pd.read_csv(r"data\processed\preprocessed.csv")
+    model: KMeans = joblib.load(r"data/model/kmeans.joblib")
+    df = pd.read_csv(r"data/processed/preprocessed.csv")
 
     # Model prediction.
     feature_columns = get_feature_columns(df)

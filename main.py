@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 from pipeline import execute_pipeline
 from evaluate import evaluate
 
-DATA_PATH = r"data\processed\preprocessed.csv"
-MODEL_PATH = r"data\model\kmeans.joblib"
+DATA_PATH = r"data/processed/preprocessed.csv"
+MODEL_PATH = r"data/model/kmeans.joblib"
 MAP_URL = "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
 COLUMN_DISPLAY_NAMES = {
     'fips_county_code': 'FIPS Code',
