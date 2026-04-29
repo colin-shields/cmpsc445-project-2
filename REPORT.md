@@ -68,8 +68,7 @@ The web application features interactive maps, created with GeoPandas and Matplo
 
 The application is hosted on the Streamlit Cloud and can be accessed at https://cmpsc445-project-2.streamlit.app/
 
-<mark>To-Do: add video</mark>
-A demonstration video can be watched [here](https://example.com/)
+A demonstration video can be watched [here](Video%20Demonstration%20and%20Exploration.mp4) or on [YouTube](https://youtu.be/F4wuqSvQT2k)
 
 The trained KMeans model is used within the application to dynamically cluster and categorize Pennsylvania counties based on their climate stress scores. Users can view county rankings sorted by their Climate Stress Score and see cluster assignments on interactive maps, where the model groups counties into Best to Worst categories. The sidebar allows users to retrain the model, allowing the clustering to adapt to updated data.
 
