@@ -1,15 +1,16 @@
 # ClimateSafe PA
 
-ClimateSafe PA is a county-level dashboard developed for CMPSC 445 Project-2, with the teme "Best in PA". It ranks Pennsylvania counties by long-term climate safety using NASA's U.S. Climate Risk Prjections by County, 2040-2049 dataset.
+Read the full report in [REPORT.md](REPORT.md)
 
-The application processes the data, creating a composite Climate Stress Score based on the county's temperature change, heat exchange, and dryness. The counties are sorted by this composite metric to determine how well they handle climate change. A KMeans clustering algorithm is also applied to determine which regions handle climate change the best and worst.
 
-All data is displayed visually using Streamlit.
+## Overview
+
+ClimateSafe PA is a web-based dashboard application developed as part of CMPSC 445 Project-2, which had the required theme of "Best in PA". The application ranks Pennslyvania counties by their long-term climate safety using NASA's U.S. Climate Risk Projections dataset over the period 2040–2049. It first processes climate risk data to create a composite Climate Stress Score, based on a county's temperature change, heat extremes, and dryness metrics. Counties are sorted by this score and clustered with a KMeans algorithm, identifying which regions handle climate change the best and the worst. The application visualizes the results of these methods through interactive maps and data tables using Streamlit, providing useres with insights into climate resilience across Pennsylvania counties.
 
 
 ## Usage
 
-In the future, the application will be hosted on Streamlit, which will be accessible via a link placed here.
+**The application is hosted on Streamlit and can be accessed at https://cmpsc445-project-2.streamlit.app/**
 
 ### Running Locally
 
@@ -17,7 +18,7 @@ Clone the repository, then
 ```powershell
 python -m venv venv
 venv\Scripts\activate
-pip install -r requirments.txt
+pip install -r requirements.txt
 streamlit run main.py
 ```
 

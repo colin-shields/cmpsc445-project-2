@@ -34,7 +34,6 @@ def build_dataset():
 
     # Save to files.
     df.to_csv(r"data/processed/county_features.csv", index=False)
-    # df.to_json(r"data/processed/county_features.json", index=False)
     print("Saved dataset.")
 
 if __name__ == "__main__":

@@ -77,10 +77,9 @@ def create_cluster_map(df):
     fig.patch.set_facecolor("none")     # set transparent background.
 
     # Add labels.
-    for idx, row in climate_counties.iterrows():
+    for _, row in climate_counties.iterrows():
         try:
             centroid = row['geometry'].centroid
-            # ax.text(centroid.x, centroid.y, f"{row['county_name']}\n{row['climate_stress_score']:.2f}", fontsize=5, ha='center')
             ax.text(centroid.x, centroid.y, f"{row['county_name']}", fontsize=6, ha='center')
         except:
             pass
@@ -98,15 +97,12 @@ def create_stress_map(df):
 
     climate_counties = gpd.GeoDataFrame(climate_counties)
 
-    # st.write(climate_counties)
-
     # Plot.
     fig, ax = plt.subplots(figsize=(10, 10))
-
     climate_counties.plot(column='climate_stress_score', cmap='cool', linewidth=0.5, ax=ax, edgecolor='black')
 
     # Add labels.
-    for idx, row in climate_counties.iterrows():
+    for _, row in climate_counties.iterrows():
         try:
             centroid = row['geometry'].centroid
             ax.text(centroid.x, centroid.y,
@@ -175,7 +171,7 @@ st.write("In this page, we explore which Pennsylvania counties have the least am
 # Basic Climate Stress.
 st.write("## Climate Stress: Baseline")
 st.write("To establish a baseline climate metric to compare the clusters against, we created a composite Climate "
-         "Stress Score. This score is calculated as a mean of the county's temperature change, heat exchange, and "
+         "Stress Score. This score is calculated as a mean of the county's temperature change, heat extremes, and "
          "dryness metrics. The figure below shows all PA counties with their climate scores. Lighter blue colors "
          "signify less climate stress, and magenta signifies the most stress.")
 st.pyplot(stress_map)
